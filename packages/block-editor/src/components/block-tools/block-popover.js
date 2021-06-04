@@ -7,7 +7,13 @@ import classnames from 'classnames';
 /**
  * WordPress dependencies
  */
-import { useState, useCallback, useRef, useEffect } from '@wordpress/element';
+import {
+	useState,
+	useCallback,
+	useRef,
+	useEffect,
+	memo,
+} from '@wordpress/element';
 import { isUnmodifiedDefaultBlock } from '@wordpress/blocks';
 import { Popover } from '@wordpress/components';
 import { useDispatch, useSelect } from '@wordpress/data';
@@ -301,7 +307,7 @@ function wrapperSelector( select ) {
 	};
 }
 
-export default function WrappedBlockPopover( {
+function WrappedBlockPopover( {
 	__unstablePopoverSlot,
 	__unstableContentRef,
 } ) {
@@ -336,3 +342,5 @@ export default function WrappedBlockPopover( {
 		/>
 	);
 }
+
+export default memo( WrappedBlockPopover );
