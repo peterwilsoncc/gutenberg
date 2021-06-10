@@ -50,6 +50,7 @@ function InsertionPointPopover( {
 			hasMultiSelection,
 			getSettings,
 			getBlockInsertionPoint,
+			hasInserterItems,
 		} = select( blockEditorStore );
 		const insertionPoint = getBlockInsertionPoint();
 		const order = getBlockOrder( insertionPoint.rootClientId );
@@ -82,7 +83,8 @@ function InsertionPointPopover( {
 					? next && multiSelectedBlockClientIds.includes( next )
 					: next &&
 					  blockOrientation === 'vertical' &&
-					  next === selectedBlockClientId ),
+					  next === selectedBlockClientId ) ||
+				! hasInserterItems( targetRootClientId ),
 			orientation: blockOrientation,
 			clientId: targetClientId,
 			rootClientId: targetRootClientId,
